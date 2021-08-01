@@ -1,7 +1,7 @@
 import React from 'react'
 import TodoItem from '../MyComponents/TodoItem'
 
-export default function Todos(props) {
+export default function Todos({todos,onDelete}) {
     let myStyle = {
         minHeight: "70vh",
         margin: "40px auto"
@@ -10,11 +10,9 @@ export default function Todos(props) {
     return (
         <div className="container my-3" style={myStyle}>
         <h3 className="my-3">Todos List</h3>
-        {props.todos.length===0? "no Todos to display" : props.todos.map((todo)=>{
+        {todos.length===0? "no Todos to display" : todos.map((todo)=>{
             return (
-                <>
-                <TodoItem todo={todo} key={todo.sno} onDelete={props.onDelete}/><hr/>
-                </>
+                <TodoItem todo={todo} key={todo.sno} onDelete={onDelete}/>
                 );
 
         })}

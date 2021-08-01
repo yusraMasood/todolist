@@ -1,17 +1,19 @@
 import React,{useState} from "react";
 
-export default function AddTodo(props) {
+export default function AddTodo({ addTodo }){
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const submit= (e)=>{
+  
+  const submit = (e) => {
     e.preventDefault();
     if(!title || !desc){
       alert("Title or Descripton cannot be empty");
     }
-    else{
-    props.addTodo(title,desc);
-    setTitle=('');
-    setDesc=('');
+    else {
+
+    addTodo(title,desc);
+    setTitle("");
+    setDesc("");
   }}
   return (
     <div className="container">

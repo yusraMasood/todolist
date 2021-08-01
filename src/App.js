@@ -2,7 +2,9 @@ import Header from "./MyComponents/Header";
 import Todos from "./MyComponents/Todos";
 import Footer from "./MyComponents/Footer";
 import AddTodo from "./MyComponents/AddTodo";
+import About from "./About";
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -40,12 +42,26 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
   return (
-    <>
+    <Router>
       <Header title="Todo List" searchBar={false} />
-      <AddTodo addTodo={addTodo} />
-      <Todos todos={todos} onDelete={onDelete} />
+      <Switch>
+        <Route exact path="/"
+          render={() => {
+            return (
+              <>
+                <AddTodo addTodo={addTodo} />
+                <Todos todos={todos} onDelete={onDelete} />
+              </>
+            );
+          }}
+        >
+        </Route>
+        <Route exact path="/about">
+          <About />
+        </Route>
+      </Switch>
       <Footer />
-    </>
+    </Router>
   );
 }
 
